@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\ProfileDog;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -13,10 +16,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class VetController extends Controller
 {
     /**
-     * @Route("/vet-list", name="vet_list")
+     * @Rest\Route("/vet-list", name="vet_list")
+     *
      */
     public function vetList()
     {
-        return $this->json('asasas');
+        $doggos = $this->getDoctrine()->getManager()->getRepository(ProfileDog::class)->findAll();
+
+        $jms = $this->container->get('jms_serializer');
+
+
+        return new Response($jms->serialize($doggos, 'json'));
     }
 }
