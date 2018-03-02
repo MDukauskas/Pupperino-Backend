@@ -35,4 +35,34 @@ class BaseController extends Controller
             $data, 'json', (new SerializationContext())->setSerializeNull(true)
         ), 200, [], true);
     }
+
+    /**
+     * @param string|null $message
+     *
+     * @return JsonResponse
+     */
+    public function getSuccessResponse(string $message = null): JsonResponse
+    {
+        $data = [
+            'message' => $message ?? 'Success',
+            'status' => 200
+        ];
+
+        return new JsonResponse($this->serializer->serialize($data, 'json'), 400, [], true);
+    }
+
+    /**
+     * @param string|null $message
+     *
+     * @return JsonResponse
+     */
+    public function errorResponse(string $message = null): JsonResponse
+    {
+        $data = [
+            'message' => $message ?? 'Opsss... Something went wrong.',
+            'status' => 400
+        ];
+
+        return new JsonResponse($this->serializer->serialize($data, 'json'), 400, [], true);
+    }
 }
