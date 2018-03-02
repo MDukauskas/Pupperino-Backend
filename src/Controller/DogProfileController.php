@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use App\Repository\ProfileDogRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -10,15 +12,30 @@ use Symfony\Component\Routing\Annotation\Route;
  *
  * @Route("api/v0", name="api_v0_")
  */
-class DogProfileController extends Controller
+class DogProfileController extends BaseController
 {
     /**
      * @Route("/profile/{id}/dog", name="dog_profile")
      *
-     * @param int $id
+     * @param Request $request
+     * @param int     $id
+     *
+     * @return Response
+     *
+     * @throws \InvalidArgumentException
      */
-    public function getProfile(int $id)
+    public function getProfile(
+        Request $request,
+        ProfileDogRepository $profileDogRepository,
+        int $id
+    )
     {
+        $dog = $profileDogRepository->find($id);
 
+        if (null === $dog) {
+            return new Response('Error');
+        }
+
+        return $this->jsonResponse($dog);
     }
 }
