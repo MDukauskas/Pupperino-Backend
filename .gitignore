@@ -1,7 +1,7 @@
 /public/bundles/
 /var/
 /vendor/
-.idea/
+/.idea/
 .env
 ###> symfony/web-server-bundle ###
 .web-server-pid
