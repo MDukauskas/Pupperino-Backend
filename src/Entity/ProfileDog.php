@@ -67,6 +67,13 @@ class ProfileDog
     protected $length;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $code;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -222,6 +229,26 @@ class ProfileDog
     public function setLength(int $length = null): self
     {
         $this->length = $length;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param string $code
+     *
+     * @return $this
+     */
+    public function setCode(string $code): self
+    {
+        $this->code = $code;
 
         return $this;
     }
