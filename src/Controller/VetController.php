@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Service\GoogleMapPlacesParser;
-use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -15,14 +15,24 @@ use Symfony\Component\Routing\Annotation\Route;
 class VetController extends BaseController
 {
     /**
-     * @Rest\Route("/vet-list", name="vet_list")
+     * @Route("/vets/list", name="vets_list", methods={"POST"})
+     * @param Request $request
      * @param GoogleMapPlacesParser $googleMapPlacesParser
      * @return JsonResponse
      */
-    public function vetList(GoogleMapPlacesParser $googleMapPlacesParser)
+    public function vetList(Request $request, GoogleMapPlacesParser $googleMapPlacesParser)
     {
-        $test = $googleMapPlacesParser->getVetsList('55.358424', '23.967773');
+        try {
+            if (!$request->get('latitude') || !$request->get('longitude')) {
+                throw new \InvalidArgumentException('Empty Latitude and Longitude');
+            }
 
-        return $this->jsonResponse($test);
+//            $vetsList = $googleMapPlacesParser->getVetsList('55.358424', '23.967773');
+            $vetsList = $googleMapPlacesParser->getVetsList($request->get('latitude'), $request->get('longitude'));
+
+            return $this->jsonResponse($vetsList);
+        } catch (\Exception $e) {
+            return $this->errorResponse($e->getMessage());
+        }
     }
 }
