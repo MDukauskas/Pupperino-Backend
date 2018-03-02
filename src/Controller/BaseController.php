@@ -5,7 +5,7 @@ namespace App\Controller;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Class BaseController.
@@ -25,14 +25,14 @@ class BaseController extends Controller
     /**
      * @param $data
      *
-     * @return Response
+     * @return JsonResponse
      *
      * @throws \InvalidArgumentException
      */
-    public function jsonResponse($data): Response
+    public function jsonResponse($data): JsonResponse
     {
-        return new Response($this->serializer->serialize(
+        return new JsonResponse($this->serializer->serialize(
             $data, 'json', (new SerializationContext())->setSerializeNull(true)
-        ));
+        ), 200, [], true);
     }
 }
