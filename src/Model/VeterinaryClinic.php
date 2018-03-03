@@ -16,6 +16,11 @@ class VeterinaryClinic
     /**
      * @var string
      */
+    private $phone;
+
+    /**
+     * @var string
+     */
     private $address;
 
     /**
@@ -29,6 +34,11 @@ class VeterinaryClinic
     private $longitude;
 
     /**
+     * @var float
+     */
+    private $distance;
+
+    /**
      * @var int
      */
     private $rating;
@@ -37,6 +47,16 @@ class VeterinaryClinic
      * @var bool
      */
     private $isOpenNow;
+
+    /**
+     * @var array
+     */
+    private $openingHours;
+
+    /**
+     * @var string
+     */
+    private $website;
 
     /**
      * @return string
@@ -53,6 +73,24 @@ class VeterinaryClinic
     public function setName(?string $name): VeterinaryClinic
     {
         $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param string $phone
+     * @return VeterinaryClinic
+     */
+    public function setPhone(?string $phone): VeterinaryClinic
+    {
+        $this->phone = $phone;
         return $this;
     }
 
@@ -111,6 +149,24 @@ class VeterinaryClinic
     }
 
     /**
+     * @return float
+     */
+    public function getDistance(): ?float
+    {
+        return $this->distance;
+    }
+
+    /**
+     * @param float $distance
+     * @return VeterinaryClinic
+     */
+    public function setDistance(?float $distance): VeterinaryClinic
+    {
+        $this->distance = $distance;
+        return $this;
+    }
+
+    /**
      * @return int
      */
     public function getRating(): ?int
@@ -143,6 +199,42 @@ class VeterinaryClinic
     public function setIsOpenNow(?bool $isOpenNow): VeterinaryClinic
     {
         $this->isOpenNow = $isOpenNow;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOpeningHours(): ?array
+    {
+        return $this->openingHours;
+    }
+
+    /**
+     * @param array $openingHours
+     * @return VeterinaryClinic
+     */
+    public function setOpeningHours(?array $openingHours): VeterinaryClinic
+    {
+        $this->openingHours = $openingHours;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWebsite(): ?string
+    {
+        return $this->website;
+    }
+
+    /**
+     * @param string $website
+     * @return VeterinaryClinic
+     */
+    public function setWebsite(?string $website): VeterinaryClinic
+    {
+        $this->website = $website;
         return $this;
     }
 }

@@ -12,15 +12,15 @@ use Symfony\Component\Routing\Annotation\Route;
  *
  * @Route("api/v0", name="api_v0_")
  */
-class VetController extends BaseController
+class VeterinaryClinicController extends BaseController
 {
     /**
-     * @Route("/vets/list", name="vets_list", methods={"POST"})
+     * @Route("/vets_clinics/list", name="veterinary_clinic_list", methods={"POST"})
      * @param Request $request
      * @param GoogleMapPlacesParser $googleMapPlacesParser
      * @return JsonResponse
      */
-    public function vetList(Request $request, GoogleMapPlacesParser $googleMapPlacesParser)
+    public function veterinaryClinicList(Request $request, GoogleMapPlacesParser $googleMapPlacesParser)
     {
         try {
             if (!$request->get('latitude') || !$request->get('longitude')) {
