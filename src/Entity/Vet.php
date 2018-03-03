@@ -75,6 +75,11 @@ class Vet
     private $institution;
 
     /**
+     * @var bool
+     */
+    private $open;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -243,14 +248,26 @@ class Vet
     }
 
     /**
+     * @param bool $status
+     *
+     * @return $this
+     */
+    public function setOpen(bool $status): self
+    {
+        $this->open = $status;
+
+        return $this;
+    }
+
+    /**
      * @return bool
      */
     public function isOpen(): bool
     {
         $openAt = str_replace(':', '', $this->getOpenTime());
         $closeAt = str_replace(':', '', $this->getCloseTime());
-        $now = date('Hm');
+        $now = date('Hi');
 
-        return ($openAt < $now && $closeAt > $now);
+        return (($openAt <= $now) && ($closeAt >= $now));
     }
 }
