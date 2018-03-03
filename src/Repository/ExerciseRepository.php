@@ -24,7 +24,7 @@ class ExerciseRepository extends ServiceEntityRepository
     /**
      * @param int $id Dog id.
      *
-     * @return array
+     * @return Exercise[]
      */
     public function getExercises(int $id): array
     {

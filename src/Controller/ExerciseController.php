@@ -57,7 +57,7 @@ class ExerciseController extends BaseController
      *
      * @throws \InvalidArgumentException
      */
-    public function getExerciseList(EntityManagerInterface $entityManager, int $id): JsonResponse
+    public function getExerciseList(EntityManagerInterface $entityManager, int $id)
     {
         $dog = $entityManager->getRepository(ProfileDog::class)->find($id);
 
@@ -72,6 +72,6 @@ class ExerciseController extends BaseController
             $this->getSuccessResponse('You need to exercise first!');
         }
 
-        return $this->jsonResponse($exerciseList);
+        return $this->jsonResponse((new \App\Model\Exercise())->setExercises($exerciseList));
     }
 }

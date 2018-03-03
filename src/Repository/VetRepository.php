@@ -2,19 +2,18 @@
 
 namespace App\Repository;
 
-use App\Entity\ProfileDog;
+use App\Entity\Vet;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * Class VetRepository
- * @package App\Repository
  */
 class VetRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, ProfileDog::class);
+        parent::__construct($registry, Vet::class);
     }
 
     /*
