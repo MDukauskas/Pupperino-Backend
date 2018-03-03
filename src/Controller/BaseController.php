@@ -6,6 +6,7 @@ use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class BaseController.
@@ -33,7 +34,7 @@ class BaseController extends Controller
     {
         return new JsonResponse($this->serializer->serialize(
             $data, 'json', (new SerializationContext())->setSerializeNull(true)
-        ), 200, [], true);
+        ), Response::HTTP_OK, [], true);
     }
 
     /**
@@ -45,10 +46,10 @@ class BaseController extends Controller
     {
         $data = [
             'message' => $message ?? 'Success',
-            'status' => 200
+            'status' => Response::HTTP_OK,
         ];
 
-        return new JsonResponse($this->serializer->serialize($data, 'json'), 400, [], true);
+        return new JsonResponse($data, Response::HTTP_OK);
     }
 
     /**
@@ -60,9 +61,9 @@ class BaseController extends Controller
     {
         $data = [
             'message' => $message ?? 'Opsss... Something went wrong.',
-            'status' => 400
+            'status' => Response::HTTP_BAD_REQUEST,
         ];
 
-        return new JsonResponse($this->serializer->serialize($data, 'json'), 400, [], true);
+        return new JsonResponse($data, Response::HTTP_BAD_REQUEST);
     }
 }
