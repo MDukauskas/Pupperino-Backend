@@ -11,7 +11,9 @@ use App\Model\VeterinaryClinic;
 class GoogleMapPlacesParser
 {
     private const API_KEY = 'AIzaSyDNlSlxiH84IdJ076Br6m-A__mAb1Gb36o';
-    private const PLACES_BASE_URL = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json';
+    private const BASE_URL = 'https://maps.googleapis.com/maps/api/';
+    private const PLACE_SEARCH_URL = 'place/nearbysearch/json';
+    private const PLACE_DETAILS_URL = 'place/details/json';
     private const TYPE_VETERINARY = 'veterinary_care';
     private const RADIUS = '500000';
 
@@ -19,7 +21,6 @@ class GoogleMapPlacesParser
      * @param int $latitude
      * @param int $longitude
      * @return VeterinaryClinic[]|null
-     * @throws \Exception
      */
     public function getVetsList(int $latitude, int $longitude): ?array
     {
@@ -27,10 +28,9 @@ class GoogleMapPlacesParser
             'location' => $latitude . ',' . $longitude,
             'radius' => self::RADIUS,
             'type' => self::TYPE_VETERINARY,
-            'key' => self::API_KEY,
         ];
 
-        $places = $this->parseResults($queryParams);
+        $places = $this->parseResults(self::PLACE_SEARCH_URL, $queryParams);
         $places = $this->getFormattedResults($places);
 
         return $places;
@@ -57,22 +57,39 @@ class GoogleMapPlacesParser
                 ->setIsOpenNow(isset($result['opening_hours']['open_now']) ? $result['opening_hours']['open_now'] : null);
         }
 
+        $text = '';
+        foreach ($results as $result) {
+            $text .= $result['place_id'];
+        }
+
+        $placesIds = array_map(function ($result) {
+            return $result['place_id'];
+        }, $results);
+
+        $queryParams = [
+//            'placeid' => implode(',', $placesIds),
+            'placeid' => $results[0]['place_id'],
+        ];
+
+        $test = $this->parseResults(self::PLACE_DETAILS_URL, $queryParams);
+
         return $list;
     }
 
     /**
+     * @param string $url
      * @param array $queryParams
      * @return array
-     * @throws \Exception
      */
-    private function parseResults(array $queryParams): array
+    private function parseResults(string $url, array $queryParams): array
     {
         $results = [];
 
+        $queryParams['key'] = self::API_KEY;
         $queryString = http_build_query($queryParams);
 
         $response = json_decode(
-            file_get_contents(self::PLACES_BASE_URL . '?' . $queryString),
+            file_get_contents(self::BASE_URL . $url . '?' . $queryString),
             true
         );
 

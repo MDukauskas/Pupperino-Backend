@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class VetController extends BaseController
 {
     /**
-     * @Route("/vets/list", name="vets_list", methods={"POST"})
+     * @Route("/vets/list", name="vets_list", methods={"GET"})
      * @param Request $request
      * @param GoogleMapPlacesParser $googleMapPlacesParser
      * @return JsonResponse
@@ -23,12 +23,12 @@ class VetController extends BaseController
     public function vetList(Request $request, GoogleMapPlacesParser $googleMapPlacesParser)
     {
         try {
-            if (!$request->get('latitude') || !$request->get('longitude')) {
-                throw new \InvalidArgumentException('Empty Latitude and Longitude');
-            }
+//            if (!$request->get('latitude') || !$request->get('longitude')) {
+//                throw new \InvalidArgumentException('Empty Latitude and Longitude');
+//            }
 
-//            $vetsList = $googleMapPlacesParser->getVetsList('55.358424', '23.967773');
-            $vetsList = $googleMapPlacesParser->getVetsList($request->get('latitude'), $request->get('longitude'));
+            $vetsList = $googleMapPlacesParser->getVetsList('55.358424', '23.967773');
+//            $vetsList = $googleMapPlacesParser->getVetsList($request->get('latitude'), $request->get('longitude'));
 
             return $this->jsonResponse($vetsList);
         } catch (\Exception $e) {
