@@ -1,1 +1,75 @@
 {% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if dog.picture %}
+        <div class="dog-picture">
+            <h1>Bobikas</h1>
+            <img src="{{ dog.picture }}"/>
+        </div>
+    {% endif %}
+    <form id="dog-form" method="POST" action="twig/dog/update/1">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="form-control" value="{{ dog.name }}"/>
+        </div>
+        <div class="form-group">
+            <label for="name">Age</label>
+            <input type="text" name="age" id="age" class="form-control" value="{{ dog.age }}" />
+        </div>
+        <div class="form-group">
+            <label for="name">Breed</label>
+            <input type="text" name="breed", id="breed" class="form-control" value="{{ dog.breed }}"/>
+        </div>
+        <div class="form-group">
+            <label for="name">Weight</label>
+            <input type="text" name="weight" id="weight" class="form-control" value="{{ dog.weight }}"/>
+        </div>
+        <div class="form-group">
+            <label for="name">Height</label>
+            <input type="text" name="height" id="height" class="form-control" value="{{ dog.height }}"/>
+        </div>
+        <div class="form-group">
+            <label for="name">Code</label>
+            <input type="text" name="code" id="code" class="form-control" value="{{ dog.code }}"/>
+        </div>
+        <div class="form-group">
+            <input id="submit" type="submit" class="form-control" value="Update Doggo">
+        </div>
+    </form>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        #dog-form {
+            padding: 5px 15px 20px 15px;
+        }
+
+        #dog-form input {
+            border-radius: 0px;
+        }
+
+        #submit {
+            background: #5856D6;
+            color: #fff;
+            text-transform: uppercase;
+            margin-top: 25px !important;
+            font-weight: bold;
+        }
+
+        .dog-picture {
+            text-align: center;
+            background: #5856D6;
+        }
+        .dog-picture img {
+            border-radius: 50%;
+            width: 27%;
+            padding: 10px 0;
+        }
+        h1 {
+            font-size: 25px;
+            color: #fff;
+            font-weight: bold;
+            padding-top: 5px;
+        }
+    </style>
+{% endblock %}

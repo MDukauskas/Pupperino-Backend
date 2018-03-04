@@ -59,16 +59,12 @@ class DogProfileController extends BaseController
             return $this->errorResponse('Doggo not found!');
         }
 
-        $dog = $dogService->createDog($request->request->all());
+        $dog = $dogService->createDog($request->request->all(), $dog);
 
-        if ($dog instanceof ProfileDog) {
-            $em->persist($dog);
-            $em->flush();
+        $em->persist($dog);
+        $em->flush();
 
-            return $this->getSuccessResponse('Doggo updated!');
-        }
-
-        return $this->errorResponse('You failed!');
+        return $this->getSuccessResponse('Doggo updated!');
     }
 
     /**
@@ -115,12 +111,50 @@ class DogProfileController extends BaseController
     }
 
     /**
-     * @Route("dog-profile")
+     * @Route("twig/dog/update/{id}", name="api_v0_dog_profile_update", methods={"POST"})
+     *
+     * @param Request                $request
+     * @param EntityManagerInterface $em
+     * @param int                    $id
+     * @param DogService             $dogService
+     *
+     * @return JsonResponse
+     * @internal param SerializerInterface $serializer
+     */
+    public function updateProfileTwig(Request $request, EntityManagerInterface $em, DogService $dogService, int $id)
+    {
+        /**
+         * @var ProfileDog $dog
+         */
+        $dog = $em->getRepository(ProfileDog::class)->find($id);
+
+        if (null === $dog->getId()) {
+            return $this->redirectToRoute('dog_profile_twig');
+        }
+
+        $dog = $dogService->createDog($request->request->all(), $dog);
+
+        $em->persist($dog);
+        $em->flush();
+
+        return $this->redirectToRoute('dog_profile_twig');
+    }
+
+    /**
+     * @Route("dog-profile", name="dog_profile_twig")
+     *
+     * @param ProfileDogRepository $profileDogRepository
      *
      * @return Response
      */
-    public function getProfileView(): Response
+    public function getProfileView(ProfileDogRepository $profileDogRepository): Response
     {
-        return $this->render('profile.html.twig');
+        $dog = $profileDogRepository->find(1);
+
+        if (null === $dog) {
+            return $this->jsonResponse('error');
+        }
+
+        return $this->render('profile.html.twig', ['dog' => $dog]);
     }
 }
