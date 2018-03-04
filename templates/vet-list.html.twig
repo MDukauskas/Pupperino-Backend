@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for vet in vets %}
+        <a class="wrapper" href=" {% if vet.open %}#open{% else %}#closed{% endif %}">
+            <img class="picture" src="{{ vet.picture }}"/>
+            <div class="data">
+                <div class="name">{{ vet.firstName }} {{ vet.lastName }}</div>
+                <div class="star-wrapper">
+                    {% for n in 1..vet.rating %}
+                        <img class="star" src="pictures/star.svg"/>
+                    {% endfor %}
+                </div>
+                {% if vet.open %}
+                    <span class="green">Open now</span> <span class="grey">Closes at: {{ vet.closeTime }}</span>
+                {% else %}
+                    <span class="red">Closed now</span> <span class="grey">Opens at: {{ vet.openTime }}</span>
+                {% endif %}
+            </div>
+        </a>
+    {% endfor %}
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .red {
+            color: red;
+            font-weight: 600;
+        }
+        .green {
+            color: #4CD964;
+            font-weight: 600;
+        }
+        .grey {
+            color: #666;
+        }
+        .wrapper .picture {
+            width: 21%;
+            display: inline-block;
+            padding: 10px;
+            border-radius: 50%;
+            margin-top: -65px;
+        }
+        .star {
+            width: 15px;
+            height: 15px;
+        }
+        .data {
+            width: 70%;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .wrapper {
+            border-radius: 7px;
+            background: #fff;
+            margin: 10px 10px 10px;
+            padding-bottom: 15px;
+            display: block;
+            text-decoration: none !important;
+        }
+        body {
+            background: #EFEFF4;
+        }
+        .name {
+            font-size: 20px;
+            color: #000;
+            font-weight: bold;
+            padding-top: 10px;
+        }
+        .header {
+            background: #5856D6;
+            display: block;
+            font-size: 25px;
+            color: #fff;
+            font-weight: bold;
+            padding: 5px 0;
+            text-align: center;
+        }
+    </style>
+{% endblock %}
