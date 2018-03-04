@@ -124,9 +124,9 @@ class Exercise
     /**
      * @return int|null
      */
-    public function getDuration(): ?int
+    public function getDuration(): ?float
     {
-        return $this->duration;
+        return number_format($this->duration / 60, 2);
     }
 
     /**
@@ -146,7 +146,7 @@ class Exercise
      */
     public function getDistance(): ?float
     {
-        return $this->distance;
+        return number_format($this->duration / 1000, 2);
     }
 
     /**

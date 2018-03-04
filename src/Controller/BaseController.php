@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ExerciseRepository;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -27,9 +28,9 @@ class BaseController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function home()
+    public function home(ExerciseRepository $exerciseRepository)
     {
-        return $this->render('home.html.twig');
+        return $this->render('home.html.twig', ['exercises' => $exerciseRepository->findAll()]);
     }
 
     /**
