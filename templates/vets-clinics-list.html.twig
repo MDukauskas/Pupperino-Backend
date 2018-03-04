@@ -2,7 +2,7 @@
 
 {% block body %}
     {% for vet in vets %}
-        <a class="wrapper" href="">
+        <a class="wrapper" target="_blank" href="{{ vet.url }}">
             {#<img class="picture" src="{{ vet.picture }}"/>#}
             <div class="data">
                 <div class="name">{{ vet.name }}</div>
@@ -53,6 +53,7 @@
             width: 70%;
             display: inline-block;
             margin-top: 10px;
+            margin-left: 20px;
         }
         .wrapper {
             border-radius: 7px;
@@ -69,7 +70,7 @@
             font-size: 20px;
             color: #000;
             font-weight: bold;
-            padding-top: 10px;
+            padding-top: 5px;
         }
         .header {
             background: #5856D6;
