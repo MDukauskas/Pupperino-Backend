@@ -41,7 +41,6 @@ class DogService
             ->setCode($data['code'] ?? null)
             ->setHeight($data['height'] ?? null)
             ->setLength($data['length'] ?? null)
-            ->setPicture($data['picture'] ?? null)
             ->setWeight($data['weight'] ?? null)
         ;
     }
