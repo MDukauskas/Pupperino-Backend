@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Vet;
+use App\Repository\ExerciseRepository;
 use App\Repository\VetRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,14 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class VetController extends BaseController
 {
+    /**
+     * @Route("/dashboard", name="homepage")
+     */
+    public function home(ExerciseRepository $exerciseRepository)
+    {
+        return $this->render('home.html.twig', ['exercises' => $exerciseRepository->findAll()]);
+    }
+
     /**
      * @Route("api/v0/vet/list", name="api_v0_vet_list", methods={"GET"})
      *

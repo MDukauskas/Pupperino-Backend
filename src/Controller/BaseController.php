@@ -26,14 +26,6 @@ class BaseController extends Controller
     }
 
     /**
-     * @Route("/dashboard", name="homepage")
-     */
-    public function home(ExerciseRepository $exerciseRepository)
-    {
-        return $this->render('home.html.twig', ['exercises' => $exerciseRepository->findAll()]);
-    }
-
-    /**
      * @param $data
      *
      * @return JsonResponse
