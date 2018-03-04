@@ -32,9 +32,9 @@ class DogService
      *
      * @return ProfileDog
      */
-    public function createDog(array $data): ProfileDog
+    public function createDog(array $data, ProfileDog $dog): ProfileDog
     {
-        return (new ProfileDog())
+        return $dog
             ->setAge($data['age'] ?? null)
             ->setName($data['name'] ?? null)
             ->setBreed($data['breed'] ?? null)
