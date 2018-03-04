@@ -16,6 +16,11 @@ class VeterinaryClinic
     /**
      * @var string
      */
+    private $url;
+
+    /**
+     * @var string
+     */
     private $phone;
 
     /**
@@ -73,6 +78,24 @@ class VeterinaryClinic
     public function setName(?string $name): VeterinaryClinic
     {
         $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     * @return VeterinaryClinic
+     */
+    public function setUrl(string $url): VeterinaryClinic
+    {
+        $this->url = $url;
         return $this;
     }
 

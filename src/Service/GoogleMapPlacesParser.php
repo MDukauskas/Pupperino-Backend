@@ -72,6 +72,7 @@ class GoogleMapPlacesParser
         $list = [];
         foreach ($results as $result) {
             $place = (new VeterinaryClinic())
+                ->setUrl($this->getPlaceUrl($result))
                 ->setName(isset($result['name']) ? $result['name'] : null)
                 ->setAddress(isset($result['formatted_address']) ? $result['formatted_address'] : null)
                 ->setLatitude(isset($result['geometry']['location']['lat']) ? $result['geometry']['location']['lat'] : null)
@@ -201,5 +202,18 @@ class GoogleMapPlacesParser
         }
 
         return $results;
+    }
+
+    /**
+     * @param array $result
+     * @return string
+     */
+    private function getPlaceUrl(array $result)
+    {
+        $lat = $result['geometry']['location']['lat'];
+        $lng = $result['geometry']['location']['lng'];
+        $placeId = $result['place_id'];
+
+        return 'https://www.google.com/maps/search/?api=1&query='.$lat.','.$lng.'&query_place_id='.$placeId;
     }
 }
