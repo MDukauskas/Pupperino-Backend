@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class VetController extends BaseController
 {
     /**
-     * @Route("/dashboard", name="homepage")
+     * @Route("/dashboards", name="homepage")
      */
     public function home(ExerciseRepository $exerciseRepository)
     {
