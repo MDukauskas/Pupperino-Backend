@@ -9,17 +9,16 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class DogProfileController.
- *
- * @Route("api/v0", name="api_v0_")
  */
 class DogProfileController extends BaseController
 {
     /**
-     * @Route("/dog/{id}", name="dog_profile", methods={"GET"})
+     * @Route("api/v0/dog/{id}", name="api_v0_dog_profile", methods={"GET"})
      *
      * @param ProfileDogRepository $profileDogRepository
      * @param int                  $id
@@ -39,7 +38,7 @@ class DogProfileController extends BaseController
     }
 
     /**
-     * @Route("/dog/update/{id}", name="dog_profile_update", methods={"POST"})
+     * @Route("api/v0/dog/update/{id}", name="api_v0_dog_profile_update", methods={"POST"})
      *
      * @param Request                $request
      * @param EntityManagerInterface $em
@@ -80,7 +79,7 @@ class DogProfileController extends BaseController
      *
      * @return JsonResponse
      *
-     * @Route("/picture/dog/{id}", name="picture_upload", methods={"POST"})
+     * @Route("api/v0/picture/dog/{id}", name="api_v0_picture_upload", methods={"POST"})
      * @throws \InvalidArgumentException
      * @throws \Symfony\Component\Filesystem\Exception\IOException
      */
@@ -113,5 +112,15 @@ class DogProfileController extends BaseController
         }
 
         return $this->errorResponse('Nice picture of puppy, was not uploaded...');
+    }
+
+    /**
+     * @Route("dog-profile")
+     *
+     * @return Response
+     */
+    public function getProfileView(): Response
+    {
+        return $this->render('profile.html.twig');
     }
 }
