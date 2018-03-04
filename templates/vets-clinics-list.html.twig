@@ -11,6 +11,14 @@
                         <img class="star" src="pictures/star.svg"/>
                     {% endfor %}
                 </div>
+                {% if vet.is_open_now %}
+                    <span class="green">Open now</span>
+                {% else %}
+                    <span class="red">Closed now</span>
+                {% endif %}
+                <span class="grey">Distance: {{ vet.distance }} km</span>
+                <br />
+                <span class="grey">Address: {{ vet.address }}</span>
             </div>
         </a>
     {% endfor %}
@@ -28,6 +36,7 @@
         }
         .grey {
             color: #666;
+            font-size: 10px;
         }
         .wrapper .picture {
             width: 21%;
