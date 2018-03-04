@@ -5,17 +5,16 @@ namespace App\Controller;
 use App\Entity\Vet;
 use App\Repository\VetRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class VetController.
- *
- * @Route("api/v0", name="api_v0_")
  */
 class VetController extends BaseController
 {
     /**
-     * @Route("/vet/list", name="vet_list", methods={"GET"})
+     * @Route("api/v0/vet/list", name="api_v0_vet_list", methods={"GET"})
      *
      * @param VetRepository $vetRepository
      *
@@ -34,5 +33,27 @@ class VetController extends BaseController
         }
 
         return $this->jsonResponse($vetList);
+    }
+
+    /**
+     * @Route("vet-list", name="vet_list_twig", methods={"GET"})
+     *
+     * @param VetRepository $vetRepository
+     *
+     * @return Response
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function vetListTwig(VetRepository $vetRepository): Response
+    {
+        $list = $vetRepository->findAll();
+
+        $vetList = [];
+        /** @var Vet $item */
+        foreach ($list as $item) {
+            $vetList[] = $item->setOpen($item->isOpen());
+        }
+
+        return $this->render('vet-list.html.twig', ['vets' => $vetList]);
     }
 }

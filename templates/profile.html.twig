@@ -3,7 +3,6 @@
 {% block body %}
     {% if dog.picture %}
         <div class="dog-picture">
-            <h1>Bobikas</h1>
             <img src="{{ dog.picture }}"/>
         </div>
     {% endif %}
@@ -66,6 +65,7 @@
             padding: 10px 0;
         }
         h1 {
+            display: block;
             font-size: 25px;
             color: #fff;
             font-weight: bold;
