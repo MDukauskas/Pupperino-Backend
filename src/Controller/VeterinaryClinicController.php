@@ -6,17 +6,16 @@ use App\Kernel;
 use App\Service\GoogleMapPlacesParser;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class VetController.
- *
- * @Route("api/v0", name="api_v0_")
  */
 class VeterinaryClinicController extends BaseController
 {
     /**
-     * @Route("/vets_clinics/list", name="veterinary_clinic_list", methods={"GET"})
+     * @Route("api/v0/vets_clinics/list", name="veterinary_clinic_list", methods={"GET"})
      * @param Request $request
      * @param GoogleMapPlacesParser $googleMapPlacesParser
      * @return JsonResponse
@@ -42,6 +41,20 @@ class VeterinaryClinicController extends BaseController
         }
 
         return $this->jsonResponse($vetsList);
+    }
+
+    /**
+     * @Route("/vets-clinics-list", name="vets_clinics_list_twig", methods={"GET"})
+
+     * @return Response
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function vetsClinicsListTwig(): Response
+    {
+        $list = $this->getFallback();
+
+        return $this->render('vets-clinics-list.html.twig', ['vets' => $list]);
     }
 
     /**
