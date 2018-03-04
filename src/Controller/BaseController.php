@@ -26,7 +26,7 @@ class BaseController extends Controller
     }
 
     /**
-     * @Route("/", name="homepage")
+     * @Route("/dashboard", name="homepage")
      */
     public function home(ExerciseRepository $exerciseRepository)
     {
