@@ -1,0 +1,287 @@
+[
+  {
+    "name": "Dainavos Veterinary, UAB",
+    "phone": "+370 37 478015",
+    "address": "Pa\u0161il\u0117s g. 118, Kaunas 51302, Lithuania",
+    "latitude": 54.9105734,
+    "longitude": 23.96525,
+    "distance": 1.22,
+    "rating": 4,
+    "is_open_now": true,
+    "opening_hours": {
+      "open_now": true,
+      "weekday_text": []
+    },
+    "website": "http://www.dainavosveterinarija.lt/"
+  },
+  {
+    "name": "Vet-1",
+    "phone": "+370 37 409530",
+    "address": "Pramon\u0117s pr. 6B, Kaunas 51267, Lithuania",
+    "latitude": 54.9086824,
+    "longitude": 23.9834896,
+    "distance": 1.72,
+    "rating": 5,
+    "is_open_now": true,
+    "opening_hours": {
+      "open_now": true,
+      "weekday_text": []
+    },
+    "website": "http://www.vet1.lt/"
+  },
+  {
+    "name": "Vet-1",
+    "phone": "+370 37 432192",
+    "address": "Kovo 11-osios g. 22, Kaunas 51349, Lithuania",
+    "latitude": 54.90598079999999,
+    "longitude": 23.975073,
+    "distance": 1.1,
+    "rating": null,
+    "is_open_now": true,
+    "opening_hours": {
+      "open_now": true,
+      "weekday_text": []
+    },
+    "website": "http://www.vet1.lt/"
+  },
+  {
+    "name": "VET-1, veterinarijos vaistine",
+    "phone": "+370 37 409530",
+    "address": "Pramon\u0117s pr. 29, Kaunas 51270, Lithuania",
+    "latitude": 54.9117592,
+    "longitude": 23.9830751,
+    "distance": 1.91,
+    "rating": 5,
+    "is_open_now": false,
+    "opening_hours": {
+      "open_now": false,
+      "weekday_text": []
+    },
+    "website": "http://www.vet1.lt/"
+  },
+  {
+    "name": "Snauceris, V. Siaurio veterinariniu paslaugu firma",
+    "phone": "+370 698 21728",
+    "address": "Technikos g., Kaunas 51335, Lithuania",
+    "latitude": 54.899317,
+    "longitude": 24.004076,
+    "distance": 2.72,
+    "rating": 4,
+    "is_open_now": true,
+    "opening_hours": {
+      "open_now": true,
+      "weekday_text": []
+    },
+    "website": "http://www.snaucerisvet.lt/"
+  },
+  {
+    "name": "Kauno veterinarijos vaistine",
+    "phone": "+370 37 205295",
+    "address": "Vilniaus g. 72, Kaunas 44291, Lithuania",
+    "latitude": 54.8974169,
+    "longitude": 23.8996301,
+    "distance": 3.97,
+    "rating": 5,
+    "is_open_now": false,
+    "opening_hours": {
+      "open_now": false,
+      "weekday_text": []
+    },
+    "website": null
+  },
+  {
+    "name": "LUHS's Kriau\u010deli\u016bnas small animal clinic",
+    "phone": "+370 37 362303",
+    "address": "Til\u017e\u0117s g. 18, Kaunas 47181, Lithuania",
+    "latitude": 54.9091178,
+    "longitude": 23.8810852,
+    "distance": 5.25,
+    "rating": 4,
+    "is_open_now": true,
+    "opening_hours": {
+      "open_now": true,
+      "weekday_text": []
+    },
+    "website": "http://sgk.lsmuni.lt/"
+  },
+  {
+    "name": "Kaunas veterinary practice",
+    "phone": "+370 610 10484",
+    "address": "Veiveri\u0173 g. 176a-2, Kaunas 46415, Lithuania",
+    "latitude": 54.859176,
+    "longitude": 23.885353,
+    "distance": 6.64,
+    "rating": 4,
+    "is_open_now": true,
+    "opening_hours": {
+      "open_now": true,
+      "weekday_text": []
+    },
+    "website": "http://www.kaunasvet.lt/"
+  },
+  {
+    "name": "Gyvunu Edenas",
+    "phone": "+370 606 07007",
+    "address": "Kur\u0161i\u0173 g. 7, Kaunas 48109, Lithuania",
+    "latitude": 54.9370899,
+    "longitude": 23.890131,
+    "distance": 6.17,
+    "rating": 4,
+    "is_open_now": true,
+    "opening_hours": {
+      "open_now": true,
+      "weekday_text": []
+    },
+    "website": "http://veterinarijosklinikakaune.lt/"
+  },
+  {
+    "name": "Kaivana",
+    "phone": "+370 37 337023",
+    "address": "Veiveri\u0173 g. 71, Kaunas 46359, Lithuania",
+    "latitude": 54.872693,
+    "longitude": 23.8908468,
+    "distance": 5.43,
+    "rating": 4,
+    "is_open_now": true,
+    "opening_hours": {
+      "open_now": true,
+      "weekday_text": []
+    },
+    "website": "http://veterinarijos-klinika.kaivana.lt/"
+  },
+  {
+    "name": "Veterinarijos gydykla",
+    "phone": null,
+    "address": "Vytauto g. 38, Garliava 53262, Lithuania",
+    "latitude": 54.8197513,
+    "longitude": 23.8743142,
+    "distance": 10.5,
+    "rating": 3,
+    "is_open_now": null,
+    "opening_hours": null,
+    "website": null
+  },
+  {
+    "name": "Veterinarijos Klinika",
+    "phone": "+370 37 338540",
+    "address": "Kaunas 47330, Lithuania",
+    "latitude": 54.9302189,
+    "longitude": 23.8200411,
+    "distance": 9.66,
+    "rating": null,
+    "is_open_now": false,
+    "opening_hours": {
+      "open_now": false,
+      "weekday_text": []
+    },
+    "website": null
+  },
+  {
+    "name": "Kabarga",
+    "phone": "+370 349 62029",
+    "address": "J. Ralio g. 1A, Jonava 55183, Lithuania",
+    "latitude": 55.0746699,
+    "longitude": 24.281449,
+    "distance": 28.19,
+    "rating": 4,
+    "is_open_now": false,
+    "opening_hours": {
+      "open_now": false,
+      "weekday_text": []
+    },
+    "website": "http://www.kabarga.lt/"
+  },
+  {
+    "name": "R. Kazlausko veterinarijos vaistine",
+    "phone": "+370 346 59107",
+    "address": "Kauno g. 40, \u017die\u017emariai 56233, Lithuania",
+    "latitude": 54.80501599999999,
+    "longitude": 24.437557,
+    "distance": 32.24,
+    "rating": 5,
+    "is_open_now": null,
+    "opening_hours": null,
+    "website": null
+  },
+  {
+    "name": "Veterinary Kedainiai",
+    "phone": "+370 606 30807",
+    "address": "Gegu\u010di\u0173 g. 15, K\u0117dainiai 57459, Lithuania",
+    "latitude": 55.2833891,
+    "longitude": 23.9610866,
+    "distance": 42.65,
+    "rating": 4,
+    "is_open_now": false,
+    "opening_hours": {
+      "open_now": false,
+      "weekday_text": []
+    },
+    "website": "https://www.facebook.com/kedainiuveterinarija"
+  },
+  {
+    "name": "VET-1, veterinarijos vaistine",
+    "phone": "+370 646 15634",
+    "address": "S. Dariaus ir S. Gir\u0117no g. 50A, K\u0117dainiai 57153, Lithuania",
+    "latitude": 55.30896139999999,
+    "longitude": 23.9796029,
+    "distance": 45.51,
+    "rating": null,
+    "is_open_now": true,
+    "opening_hours": {
+      "open_now": true,
+      "weekday_text": []
+    },
+    "website": "http://www.vet1.lt/"
+  },
+  {
+    "name": "VET-1, veterinarijos vaistine",
+    "phone": "+370 428 57078",
+    "address": "Taurupio g. 15A, Ariogala 60251, Lithuania",
+    "latitude": 55.2681657,
+    "longitude": 23.4710802,
+    "distance": 51.5,
+    "rating": 5,
+    "is_open_now": true,
+    "opening_hours": {
+      "open_now": true,
+      "weekday_text": []
+    },
+    "website": "http://www.vet1.lt/"
+  },
+  {
+    "name": "Veterinarijos pagalba",
+    "phone": "+370 345 50031",
+    "address": "S. Lozorai\u010dio gatv\u0117 16, Baltru\u0161i\u0173 k. 71286, Lithuania",
+    "latitude": 54.7481596,
+    "longitude": 23.2113545,
+    "distance": 50.93,
+    "rating": 3,
+    "is_open_now": null,
+    "opening_hours": null,
+    "website": null
+  },
+  {
+    "name": "R. Laurecko veterinarijos \u012fmon\u0117",
+    "phone": "+370 343 92820",
+    "address": "Marijampol\u0117 68110, Lithuania",
+    "latitude": 54.56218399999999,
+    "longitude": 23.3695159,
+    "distance": 53.42,
+    "rating": 5,
+    "is_open_now": null,
+    "opening_hours": null,
+    "website": null
+  },
+  {
+    "name": "Vaidmilda, veterinarijos klinika",
+    "phone": "+370 676 92252",
+    "address": "Kosmonaut\u0173 g. 14A, Marijampol\u0117 68247, Lithuania",
+    "latitude": 54.5580971,
+    "longitude": 23.3334339,
+    "distance": 55.41,
+    "rating": 5,
+    "is_open_now": null,
+    "opening_hours": null,
+    "website": null
+  }
+]

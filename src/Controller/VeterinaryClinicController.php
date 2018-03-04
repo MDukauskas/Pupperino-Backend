@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Kernel;
 use App\Service\GoogleMapPlacesParser;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,24 +16,42 @@ use Symfony\Component\Routing\Annotation\Route;
 class VeterinaryClinicController extends BaseController
 {
     /**
-     * @Route("/vets_clinics/list", name="veterinary_clinic_list", methods={"POST"})
+     * @Route("/vets_clinics/list", name="veterinary_clinic_list", methods={"GET"})
      * @param Request $request
      * @param GoogleMapPlacesParser $googleMapPlacesParser
      * @return JsonResponse
      */
-    public function veterinaryClinicList(Request $request, GoogleMapPlacesParser $googleMapPlacesParser)
+    public function veterinaryClinicsList(Request $request, GoogleMapPlacesParser $googleMapPlacesParser)
     {
         try {
-            if (!$request->get('latitude') || !$request->get('longitude')) {
-                throw new \InvalidArgumentException('Empty Latitude and Longitude');
-            }
+//            if (!$request->get('latitude') || !$request->get('longitude')) {
+//                throw new \InvalidArgumentException('Empty Latitude and Longitude');
+//            }
 
-//            $vetsList = $googleMapPlacesParser->getVetsList('55.358424', '23.967773');
-            $vetsList = $googleMapPlacesParser->getVetsList($request->get('latitude'), $request->get('longitude'));
+//            $vetsList = $googleMapPlacesParser->getVetsClinicsList('54.8997654', '23.9615957');
+//            $vetsList = $googleMapPlacesParser->getVetsClinicsList($request->get('latitude'), $request->get('longitude'));
 
-            return $this->jsonResponse($vetsList);
+            /**
+             * @TODO: remove
+             */
+            $vetsList = $this->getFallback();
         } catch (\Exception $e) {
-            return $this->errorResponse($e->getMessage());
+            $vetsList = $this->getFallback();
+
+//            return $this->errorResponse($e->getMessage());
         }
+
+        return $this->jsonResponse($vetsList);
+    }
+
+    /**
+     * @return string
+     */
+    private function getFallback()
+    {
+        return json_decode(
+            file_get_contents(Kernel::ROOT_DIR . 'public/places.json'),
+            true
+        );
     }
 }
