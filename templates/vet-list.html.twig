@@ -2,7 +2,7 @@
 
 {% block body %}
     {% for vet in vets %}
-        <a class="wrapper" href=" {% if vet.open %}#open{% else %}#closed{% endif %}">
+        <a class="wrapper" href=" {% if vet.open %}?open{% else %}?closed{% endif %}">
             <img class="picture" src="{{ vet.picture }}"/>
             <div class="data">
                 <div class="name">{{ vet.firstName }} {{ vet.lastName }}</div>
