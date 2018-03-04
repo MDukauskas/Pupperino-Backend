@@ -2,17 +2,94 @@
 
 {% block body %}
     <div class="body">
-        <div><img src="pictures/sos.png"/></div>
-        <div><img src="pictures/chat.png"/></div>
-        <div><img src="pictures/paw.png"/></div>
-        <div><img src="pictures/vetlist.png"/></div>
+        <div class="wrapper">
+            <div class="header">Exercise list</div>
+            {% for exercise in exercises %}
+                <div class="walk">
+                    Bobikas was out for a walk for {{ exercise.duration }} mins. ({{ exercise.distance }} km)
+
+                    {% if loop.index != exercises|length %}
+                        <hr/>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="button-wrapper">
+            <div class="wrap">
+                <img src="pictures/chat.png"/>
+                <div class="img-text chat">Vet<br />Messages</div>
+            </div>
+            <div class="wrap">
+                <img src="pictures/paw.png"/>
+                <div class="img-text paw">Dog<br />Profile</div>
+            </div>
+            <div class="wrap">
+                <img src="pictures/vetlist.png"/>
+                <div class="img-text vet">Vet<br />List</div>
+            </div>
+            <div class="wrap">
+                <a href="?sos"><img src="pictures/sos.png"/></a>
+                <div class="img-text sos">Emergency<br />Call</div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
 {% block stylesheets %}
     <style>
+        .chat { color: #007AFF}
+        .paw { color: #4CD964}
+        .vet { color: #FF9500}
+        .sos { color: #FF2D55}
+        .img-text {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            padding-top: 5px;
+        }
+        .button-wrapper {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .button-wrapper a {
+            text-decoration: none !important;
+        }
+
+        .button-wrapper .wrap {
+            width: 20%;
+            display: inline-block;
+        }
+
+        .button-wrapper img {
+            width: 100%;
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+
         body {
             background: #EFEFF4;
+        }
+
+        .wrapper {
+            border-radius: 7px;
+            background: #fff;
+            margin: 10px 10px 10px;
+            padding-bottom: 15px;
+            display: block;
+            text-decoration: none !important;
+        }
+
+        .walk {
+            padding: 10px 5px 0px 15px;
+        }
+
+        .header {
+            text-align: center;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            font-size: 20px;
+            font-weight: 600;
         }
     </style>
 {% endblock %}
