@@ -2,50 +2,58 @@
 
 namespace App\Controller;
 
+use App\Entity\Vet;
 use App\Repository\VetRepository;
-use App\Service\GoogleMapPlacesParser;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class VetController.
- *
- * @Route("api/v0", name="api_v0_")
  */
 class VetController extends BaseController
 {
     /**
-     * @Route("/vet/list", name="vet_list", methods={"GET"})
+     * @Route("api/v0/vet/list", name="api_v0_vet_list", methods={"GET"})
      *
      * @param VetRepository $vetRepository
      *
      * @return JsonResponse
+     *
+     * @throws \InvalidArgumentException
      */
     public function vetList(VetRepository $vetRepository)
     {
-        return $this->jsonResponse($vetRepository->findAll());
+        $list = $vetRepository->findAll();
+
+        $vetList = [];
+        /** @var Vet $item */
+        foreach ($list as $item) {
+            $vetList[] = $item->setOpen($item->isOpen());
+        }
+
+        return $this->jsonResponse($vetList);
     }
 
     /**
-     * @Route("/institution/list", name="institution_list", methods={"GET"})
-     * @param Request $request
-     * @param GoogleMapPlacesParser $googleMapPlacesParser
-     * @return JsonResponse
+     * @Route("vet-list", name="vet_list_twig", methods={"GET"})
+     *
+     * @param VetRepository $vetRepository
+     *
+     * @return Response
+     *
+     * @throws \InvalidArgumentException
      */
-    public function institutionList(Request $request, GoogleMapPlacesParser $googleMapPlacesParser)
+    public function vetListTwig(VetRepository $vetRepository): Response
     {
-        try {
-            if (!$request->get('latitude') || !$request->get('longitude')) {
-                throw new \InvalidArgumentException('Empty Latitude and Longitude');
-            }
+        $list = $vetRepository->findAll();
 
-//            $vetsList = $googleMapPlacesParser->getVetsList('55.358424', '23.967773');
-            $institutionList = $googleMapPlacesParser->getVetsList($request->get('latitude'), $request->get('longitude'));
-
-            return $this->jsonResponse($institutionList);
-        } catch (\Exception $e) {
-            return $this->errorResponse($e->getMessage());
+        $vetList = [];
+        /** @var Vet $item */
+        foreach ($list as $item) {
+            $vetList[] = $item->setOpen($item->isOpen());
         }
+
+        return $this->render('vet-list.html.twig', ['vets' => $vetList]);
     }
 }

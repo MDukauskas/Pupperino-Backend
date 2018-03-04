@@ -9,17 +9,16 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class DogProfileController.
- *
- * @Route("api/v0", name="api_v0_")
  */
 class DogProfileController extends BaseController
 {
     /**
-     * @Route("/dog/{id}", name="dog_profile", methods={"GET"})
+     * @Route("api/v0/dog/{id}", name="api_v0_dog_profile", methods={"GET"})
      *
      * @param ProfileDogRepository $profileDogRepository
      * @param int                  $id
@@ -39,7 +38,7 @@ class DogProfileController extends BaseController
     }
 
     /**
-     * @Route("/dog/update/{id}", name="dog_profile_update", methods={"POST"})
+     * @Route("api/v0/dog/update/{id}", name="api_v0_dog_profile_update", methods={"POST"})
      *
      * @param Request                $request
      * @param EntityManagerInterface $em
@@ -60,16 +59,12 @@ class DogProfileController extends BaseController
             return $this->errorResponse('Doggo not found!');
         }
 
-        $dog = $dogService->createDog($request->request->all());
+        $dog = $dogService->createDog($request->request->all(), $dog);
 
-        if ($dog instanceof ProfileDog) {
-            $em->persist($dog);
-            $em->flush();
+        $em->persist($dog);
+        $em->flush();
 
-            return $this->getSuccessResponse('Doggo updated!');
-        }
-
-        return $this->errorResponse('You failed!');
+        return $this->getSuccessResponse('Doggo updated!');
     }
 
     /**
@@ -80,7 +75,7 @@ class DogProfileController extends BaseController
      *
      * @return JsonResponse
      *
-     * @Route("/picture/dog/{id}", name="picture_upload", methods={"POST"})
+     * @Route("api/v0/picture/dog/{id}", name="api_v0_picture_upload", methods={"POST"})
      * @throws \InvalidArgumentException
      * @throws \Symfony\Component\Filesystem\Exception\IOException
      */
@@ -113,5 +108,53 @@ class DogProfileController extends BaseController
         }
 
         return $this->errorResponse('Nice picture of puppy, was not uploaded...');
+    }
+
+    /**
+     * @Route("twig/dog/update/{id}", name="api_v0_dog_profile_update", methods={"POST"})
+     *
+     * @param Request                $request
+     * @param EntityManagerInterface $em
+     * @param int                    $id
+     * @param DogService             $dogService
+     *
+     * @return JsonResponse
+     * @internal param SerializerInterface $serializer
+     */
+    public function updateProfileTwig(Request $request, EntityManagerInterface $em, DogService $dogService, int $id)
+    {
+        /**
+         * @var ProfileDog $dog
+         */
+        $dog = $em->getRepository(ProfileDog::class)->find($id);
+
+        if (null === $dog->getId()) {
+            return $this->redirectToRoute('dog_profile_twig');
+        }
+
+        $dog = $dogService->createDog($request->request->all(), $dog);
+
+        $em->persist($dog);
+        $em->flush();
+
+        return $this->redirectToRoute('dog_profile_twig');
+    }
+
+    /**
+     * @Route("dog-profile", name="dog_profile_twig")
+     *
+     * @param ProfileDogRepository $profileDogRepository
+     *
+     * @return Response
+     */
+    public function getProfileView(ProfileDogRepository $profileDogRepository): Response
+    {
+        $dog = $profileDogRepository->find(1);
+
+        if (null === $dog) {
+            return $this->jsonResponse('error');
+        }
+
+        return $this->render('profile.html.twig', ['dog' => $dog]);
     }
 }
