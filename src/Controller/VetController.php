@@ -19,7 +19,7 @@ class VetController extends BaseController
      */
     public function home(ExerciseRepository $exerciseRepository)
     {
-        return $this->render('home.html.twig', ['exercises' => $exerciseRepository->findAll()]);
+        return $this->render('home.html.twig', ['exercises' => $exerciseRepository->getExercises(1)]);
     }
 
     /**
